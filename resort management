@@ -1,0 +1,209 @@
+print("HELLO!!!!!WELCOME TO ROYAL BLISS RESORT")
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+def resortbooking():
+ f=open("Customer info sheet.txt","w")
+ import random
+ i=random.randint(1000,5000)
+ w=str(i)
+ n=input("Enter your name")
+ g=int(input("Enter your age"))
+ l=str(g)
+ p=input("Enter the gender")
+ ph=input("Enter your phone number")
+ ad=input("Enter the address")
+ date=input("Enter the date in DD/MM/YYYY format")
+ dep=int(input("Enter the aadar number"))
+ dr=input("Enter the number of people")
+ print()
+ f.write("\n-----------------------------ROYAL BLISS RESORT-----------------------------")
+ f.write("\nID - :"+w)
+ f.write("\nName - : "+n)
+ f.write("\nGender - : "+p)
+ f.write("\nAge - : "+l)
+ f.write("\nAddress - : "+ad)
+ f.write("\nPhone number - : "+ph)
+ f.write("\nDate - : "+date)
+ f.close()
+ f=open("Customer info sheet.txt","r")
+ s=f.read()
+ print(s)
+ f.close()
+resortbooking()
+
+print("\U0001F60D Choose your option")
+while True:
+ print("1-Room Booking\n2-Room Service\n3-Food service\n4-Restaurant\n5-table reservation\n6-Adventures\n7-Spa\n8-Rating\n9-to exit site")
+ ch=int(input("Enter your choice"))
+ if ch==1:
+    print("Room details are given below")
+    def booking():
+        import mysql.connector as mc
+        con=mc.connect(user="root",host="localhost",database="12a22_23",password="",charset="utf8")
+        cur=con.cursor()
+        q1="select * from rooms"
+        print("[rcode,room type,no of rooms,availability,cost per day]")
+        cur.execute(q1)
+        c=cur.fetchall()
+        for table in c:
+            print(table)
+        choice=int(input("Choose your room by entering it's rcode"))   
+        q2="select * from rooms where rcode={}".format(choice)
+        cur.execute(q2)
+        c1=cur.fetchall()
+        for item in c1:
+          print(c1)
+        a=input("Would you like to book a room?y/n")
+        if a=="y":
+            ph=int(input("Enter your phone number"))
+            ad=input("Enter you address")
+            rc=int(input("Enter the room code to be booked"))
+            b=input("Enter the checkin date(with commas in between)")
+            c=input("Enter the checkout date(with commas in between0)")
+            d=input("Are you confirming your booking?y/n")
+            if d=="y":
+                print("Hurray....thankyou for booking....your confirmation message will be send in two days..")
+            else:
+                print("Sorry...the booking has been cancelled")
+    
+        else:
+            print("bye..thankyou for visiting")
+    booking()
+ elif ch==2:
+  def room_service():
+        print("Namaste sir..... Welcome to room service ")
+        import mysql.connector as mc
+        con=mc.connect(user="root",host="localhost",database="12a22_23",password="",charset="utf8")
+        cur=con.cursor()
+        print("Cleaning Service ..... on the way")
+        print("Please fill the details ")
+        kcode=int(input("Enter your key number   :  "))
+        q="Select * from rooms where rcode={}".format(kcode)
+        cur.execute(q)
+        l=cur.fetchall()
+        for i in l:
+            print(i)
+        cl=int(input("1  -  Regular cleaning\n2  -   Deep cleaning"))
+        ch=int(input("Enter your choice"))
+        if ch==1:
+            en=input("To ensure your regular cleaning service type 'ok'  ;")
+            print("Booking succesfully completed \n Thank you......")
+        elif ch==2:
+            en=input("To ensure your deep cleaning service type 'ok'  ;")
+            print("Booking succesfully completed \n Thank you......")
+  room_service()
+ elif ch==3:
+        print("Food service ......on the way...")
+        print("Menu card")
+        print(["code","Items","price"])
+        print([1,"Hot Coffee",20])
+        print([2,"Cold Coffee",50])
+        print([3,"Tea",20])
+        print([4,"Mojito",20])
+        print([5,"water small (500ml)",20])
+        print([6,"sprite",20])
+        print([7,"masala tea ice",20])
+        print([8,"orange juice",20])
+        print([9,"mango juice",20])
+        ch=input("Enter the item numbers to select you items(seperate with commas)")
+        print("Your item will be delivered in 30 minutes.....Thank You")
+ elif ch==4:
+     def restaurant():
+        import mysql.connector as mc
+        con=mc.connect(user="root",host="localhost",database="project2223",password="",charset="utf8")
+        cur=con.cursor()
+        q1="select * from menu"
+        print("[mno,item name,price]")
+        cur.execute(q1)
+        c=cur.fetchall()
+        for table in c:
+            print(table)
+        choice=int(input("Choose your item by entering it's mno"))   
+        q2="select * from menu where mno={}".format(choice)
+        cur.execute(q2)
+        c1=cur.fetchall()
+        for item in c1:
+          print(c1)
+     restaurant()
+ elif ch==5:
+       print("Here are the options available:")
+       print([1,"single"])
+       print([2,"double"])
+       print([3,"double(with a view)"])
+       print([4,"four chair"])
+       print([5,"6 chair"])
+       print([6,"six chair(open garden)"])
+       print([7,"15 chair(indoor special arrangement)"])
+       print([8,"15 chair(outdoor special arrangement)"])
+       ch=int(input("Enter the code of table to be reserved"))
+       dt=input("Enter the date(seperated with commas)")
+       tm=input("Enter the time(seperated with colon)")
+       print("Your table will be reserved according to the date and time given....Reservation confirmation will be send soon")
+ elif ch==6:
+        print("These are the different adventures and activities you can explore and enjoy")
+        def adv():
+          import mysql.connector as mc
+          con=mc.connect(user="root",host="localhost",database="12a22_23",password="",charset="utf8")
+          cur=con.cursor()
+          q1="select * from adv_act"
+          print("[acode,activities,amount per person]")
+          cur.execute(q1)
+          c=cur.fetchall()
+          for table in c:
+            print(table)
+          choice=int(input("Choose an adventure you wanna try by entering it's code"))   
+          q2="select * from adv_act where acode={}".format(choice)
+          cur.execute(q2)
+          c1=cur.fetchall()
+          for item in c1:
+             print(c1)
+             print("Thankyou for trying out the activities....Best of luck....")
+        adv()
+ elif ch==7:
+     def spa():
+          import mysql.connector as mc
+          con=mc.connect(user="root",host="localhost",database="project2223",password="",charset="utf8")
+          cur=con.cursor()
+          q1="select * from spa"
+          print("[acode,type of spa,amount per person]")
+          cur.execute(q1)
+          c=cur.fetchall()
+          for table in c:
+            print(table)
+          choice=int(input("Choose the spa you wanna try by entering it's code"))   
+          q2="select * from spa where acode={}".format(choice)
+          cur.execute(q2)
+          c1=cur.fetchall()
+          for item in c1:
+             print(c1)
+             print("Thankyou for trying out the spa....Best of luck....")
+     spa()
+     
+ elif ch==8:
+     def rating():
+       print("Thank you for booking ..... Have a nice journey.....\U0001F600")
+       r=input("Do you like to rate us?y/n")
+       if r=="y" or "Y":
+          print("5  -  Outstanding,Exceded the expectations\n4  -  Excellent, had a good time\n3   -   Good , Acceptable\n2  -  Poor performence, Below average\n1  -  Uacceptable")
+          ch=int(input("Enter your choice  :  "))
+          if ch==5:
+            print("Thank You..... so special for us .... try to maintain the same")
+            print("\N{smiling face with sunglasses}", end="\n")
+          elif ch==4:
+            print("Thank You..... pleasure to have you again.....")
+            print("\N{grinning face}", end="\n")
+          elif ch==3:
+            print("Thank You..... will have more improvements next time.....")
+            print("\N{slightly smiling face}", end="\n")
+          elif ch==2:
+            print("Sorry......will try to improve")
+            print("\N{loudly crying face}", end="\n")
+          elif ch==1:
+            print("Sorry......will try to improve")
+            print("\N{loudly crying face}", end="\n")
+     rating()
+ elif ch==9:
+     print("Thankyou for visiting....hope you enjoyed")
+     break  
+            
+            
+        
